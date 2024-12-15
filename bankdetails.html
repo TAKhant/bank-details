@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tease Your Crush</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap'); /* Romantic handwriting font */
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #79d2ed;
+      font-family: Arial, sans-serif;
+      overflow: hidden; /* Prevent scroll when "No" button moves */
+      font-family: 'Dancing Script', cursive; /* Romantic handwriting font */
+      color: #db09b1; /* Romantic pink */
+    }
+    .container {
+      text-align: center;
+    }
+    h1 {
+      font-size: 50px;
+      margin-bottom: 30px;
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    button {
+      padding: 10px 30px;
+      margin : 10px;
+      font-size: 24px;
+      border: none;
+      background-color: #4caf50;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      border-radius: 5px;
+    }
+    #yesButton {
+      background-color: #4caf50;
+      color: white;
+    }
+    #noButton {
+      background-color: #f44336;
+      color: white;
+    }
+    button:hover {
+      transform: scale(1.1); /* Slight zoom on hover */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Zoot!! Press "Yes" for bank details! 😔</h1>
+    <div class="buttons">
+      <button id="yesButton">Yes</button>
+      <button id="noButton">Give up!</button>
+    </div>
+  </div>
+
+  <audio id="audio" src="mission_impossible.mp3" preload="auto"></audio>
+
+  <script>
+    const noButton = document.getElementById('noButton');
+    const yesButton = document.getElementById('yesButton');
+    const h1 = document.querySelector('h1'); // Select the <h1> element
+
+    // Function to move the "Yes" button to a random position, avoiding the "No" button and <h1>
+    function moveYesButton() {
+      // Get the positions of the "No" button and <h1>
+      const noButtonRect = noButton.getBoundingClientRect();
+      const h1Rect = h1.getBoundingClientRect();
+
+      // Define a minimum distance from the "No" button and <h1> element
+      const minDistance = 150;
+
+      let randomX, randomY;
+
+      // Ensure the "Yes" button stays away from both the "No" button and <h1>
+      do {
+        randomX = Math.random() * (window.innerWidth - yesButton.offsetWidth);
+        randomY = Math.random() * (window.innerHeight - yesButton.offsetHeight);
+
+        // Check if the random position is too close to "No" button or <h1>
+      } while (
+        (randomX < noButtonRect.left - minDistance || randomX > noButtonRect.right + minDistance) &&
+        (randomY < noButtonRect.top - minDistance || randomY > noButtonRect.bottom + minDistance) &&
+        (randomX < h1Rect.left - minDistance || randomX > h1Rect.right + minDistance) &&
+        (randomY < h1Rect.top - minDistance || randomY > h1Rect.bottom + minDistance)
+      );
+
+      yesButton.style.position = 'absolute'; // Change position to absolute so it can move
+      yesButton.style.left = `${randomX}px`;
+      yesButton.style.top = `${randomY}px`;
+    }
+
+    // Attach click event to the "Yes" button
+    yesButton.addEventListener('click', () => {
+      // Change the h1 text after clicking Yes
+      h1.textContent = "Try your best not to give up! 🤣"; // Change the h1 text
+
+      // Play the audio
+      const audio = document.getElementById('audio');
+      audio.play();
+
+      // Move the "Yes" button
+      moveYesButton();
+    });
+
+    // Attach click event to the "No" button (no movement)
+    noButton.addEventListener('click', () => {
+      window.location.href = 'yoursmile.html'; // Show a sweet message
+    });
+  </script>
+</body>
+</html>

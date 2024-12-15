@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Romantic Falling Hearts</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap'); /* Romantic handwriting font */
+    
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #79d2ed;
+      font-family: Arial, sans-serif;
+      overflow: hidden; /* Prevent scroll during confetti */
+      position: relative; /* Necessary for floating hearts */
+      flex-direction: column; /* Ensure column layout on small screens */
+    }
+    .container {
+      text-align: center;
+      z-index: 10; /* Ensure the text and image are above particles */
+      padding: 20px;
+    }
+    h1 {
+      font-size: 50px;
+      margin-bottom: 30px;
+      font-family: 'Dancing Script', cursive; /* Romantic handwriting font */
+      color: #db09b1; /* Romantic pink */
+    }
+    img {
+      width: 80%; /* Make image responsive */
+      max-width: 400px; /* Set max width for image */
+      height: auto; /* Maintain aspect ratio */
+      border-radius: 10px; /* Optional: rounded corners */
+    }
+
+    /* Dropping heart animation */
+    @keyframes dropHearts {
+      0% {
+        transform: translateY(-100px) rotate(0deg); /* Start from above */
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg); /* Fall to the bottom with rotation */
+        opacity: 0; /* Fade out */
+      }
+    }
+
+    .heart {
+      position: absolute;
+      top: -50px;
+      font-size: 30px;
+      animation: dropHearts linear infinite;
+      color: #ff69b4; /* Heart color */
+      pointer-events: none;
+    }
+
+    /* Randomize heart size and animation duration */
+    .heart:nth-child(even) {
+      animation-duration: 5s;
+    }
+
+    .heart:nth-child(odd) {
+      animation-duration: 4s;
+    }
+
+    .heart:nth-child(3n) {
+      animation-duration: 6s;
+    }
+
+    /* Mobile responsiveness */
+    @media screen and (max-width: 768px) {
+      h1 {
+        font-size: 40px; /* Adjust heading font size for smaller screens */
+        margin-bottom: 20px;
+      }
+      img {
+        width: 90%; /* Increase image width for smaller screens */
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      h1 {
+        font-size: 30px; /* Reduce font size further for very small screens */
+        margin-bottom: 10px;
+      }
+      img {
+        width: 100%; /* Set image to 100% width for very small screens */
+        max-width: none; /* Remove max-width restriction */
+      }
+    }
+  </style>
+  <!-- Add Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <img src="flowerdog.png" alt="Cute Dog">
+    <h1>Your Smile is more than Enough!</h1>
+    <h1 style="font-size: 45px;">Don't forget to smile :3</h1>
+  </div>
+
+  <!-- Add audio element with autoplay -->
+  <audio id="audio" src="tiptoe.mp3" autoplay preload="auto"></audio>
+
+  <script>
+    // Trigger confetti on page load with heart-shaped particles
+    window.onload = function() {
+      // Fire confetti with heart-shaped particles
+      confetti({
+        particleCount: 1000, // Number of confetti particles
+        spread: 500, // Spread of the confetti
+        origin: { y: 0.3 }, // Position the confetti at a lower part of the screen
+        shapes: ['square'], // Set the shape to hearts
+        colors: ['#ff0000', '#ff7f00', '#ffff00', '#00ff00', '#0000ff', '#4b0082', '#9400d3']
+      });
+
+      // Create heart falling animation
+      for (let i = 0; i < 20; i++) {
+        let heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.textContent = '❤️';
+        heart.style.left = Math.random() * 100 + '%'; // Randomize horizontal position
+        heart.style.animationDuration = Math.random() * 3 + 4 + 's'; // Randomize speed
+        document.body.appendChild(heart);
+      }
+
+      // Play the audio when the page loads
+      const audio = document.getElementById('audio');
+      audio.play();
+    }
+  </script>
+</body>
+</html>

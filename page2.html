@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap'); /* Romantic handwriting font */
+    
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #79d2ed;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden; /* Prevent horizontal scrolling */
+    }
+
+    .container {
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 50px;
+      margin-bottom: 50px;
+      font-family: 'Dancing Script', cursive; /* Romantic handwriting font */
+      color: #db09b1; /* Romantic pink */
+    }
+
+    img {
+      width: 80%; /* Adjust image width for mobile responsiveness */
+      max-width: 400px; /* Limit max width of the image */
+      height: auto; /* Maintain aspect ratio */
+      border-radius: 10px; /* Optional: rounded corners */
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px; /* Space between buttons */
+      margin-top: 20px;
+      flex-wrap: wrap; /* Allow buttons to stack on small screens */
+    }
+
+    .normal-btn {
+      padding: 10px 30px;
+      margin: 10px;
+      font-size: 24px; /* Default font size for both buttons */
+      border: none;
+      background-color: #4caf50;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      border-radius: 5px;
+    }
+
+    .large-btn {
+      background-color: #f44336; /* Red color for No button */
+      font-size: 50px; /* Larger font size for "No" button */
+      padding: 15px 60px; /* Larger padding for "No" button */
+      border: none;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      border-radius: 5px;
+      margin-left: 20px;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    /* Mobile responsiveness */
+    @media screen and (max-width: 768px) {
+      h1 {
+        font-size: 36px; /* Reduce font size for smaller screens */
+      }
+      .normal-btn, .large-btn {
+        font-size: 18px; /* Adjust button font size */
+        padding: 8px 20px; /* Adjust padding for smaller buttons */
+      }
+      .button-container {
+        gap: 10px; /* Reduce gap between buttons */
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      h1 {
+        font-size: 28px; /* Further reduce font size for very small screens */
+      }
+      img {
+        width: 90%; /* Increase image width for smaller screens */
+      }
+      .large-btn {
+        font-size: 30px; /* Reduce size of large button on small screens */
+        padding: 12px 50px; /* Adjust padding for smaller "No" button */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="dog1.jpg" alt="Cute Dog">
+    <h1>Still want my bank details?</h1>
+    <!-- <div class="button-container"> -->
+      <button class="normal-btn" onclick="location.href='page3.html'">Yes</button>
+      <button class="large-btn" onclick="location.href='yoursmile.html'">No</button>
+    <!-- </div> -->
+  </div>
+</body>
+</html>
